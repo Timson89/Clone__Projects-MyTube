@@ -1,13 +1,12 @@
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 
 export default function Home() {
 
   return (
     <div>
-      <Button variant={"new"}>
-        Click Me
-      </Button>
+      <Image src={"logo.svg"} height={ 50 } width={ 50 } alt="Logo" fetchPriority='high' />
+      <p className="text-xl font-semibold tracking-tight">MyTube</p>
     </div>
   );
 }
