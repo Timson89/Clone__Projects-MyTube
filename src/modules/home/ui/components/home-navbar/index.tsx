@@ -2,6 +2,7 @@ import React from 'react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import Image from "next/image";
+import SearchInput from './search-input';
 
 
 const HomeNavbar = () => {
@@ -25,6 +26,12 @@ const HomeNavbar = () => {
 
             </div>
           </Link>
+        </div>
+
+          {/* Search Bar */}
+          
+        <div className='flex-1 flex justify-center max-w-[720px] mx-auto'>
+          <SearchInput />
         </div>
       </div>
     </nav>
