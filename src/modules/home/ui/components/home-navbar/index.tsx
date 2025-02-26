@@ -2,11 +2,11 @@ import React from 'react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import Image from "next/image";
-import SearchInput from './search-input';
-import AuthButton from '@/modules/auth/ui/components/auth-button';
+import { SearchInput } from './search-input';
+import { AuthButton } from '@/modules/auth/ui/components/auth-button';
 
 
-const HomeNavbar = () => {
+export const HomeNavbar = () => {
 
   return (
 
@@ -21,10 +21,10 @@ const HomeNavbar = () => {
 
           <Link href={'/'}>
             <div className='p-4 flex items-center gap-1'>
-
               <Image src='/logo.svg' alt='Logo' width={ 32 } height={ 32 } />
-              <p className='text-xl font-semibold tracking-tight'>MyTube</p>
-
+              <p className='text-xl font-semibold tracking-tight'>
+            MyTube
+              </p>
             </div>
           </Link>
         </div>
@@ -41,5 +41,3 @@ const HomeNavbar = () => {
     </nav>
   )
 }
-
-export default HomeNavbar;

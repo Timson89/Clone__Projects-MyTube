@@ -7,7 +7,9 @@ export default function Home() {
     
     <div>
       <Image src={"logo.svg"} height={ 32 } width={ 32 } alt="Logo" fetchPriority='high' />
-      <p className="text-xl font-semibold tracking-tight">MyTube</p>
+      <p className="text-xl font-semibold tracking-tight">
+    MyTube
+      </p>
     </div>
   );
 }

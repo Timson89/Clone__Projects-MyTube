@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchIcon } from 'lucide-react';
 
 
-const SearchInput = () => {
+export const SearchInput = () => {
 
   // TODO: add search functionality //
 
@@ -24,5 +24,3 @@ const SearchInput = () => {
     </form>
   )
 }
-
-export default SearchInput;

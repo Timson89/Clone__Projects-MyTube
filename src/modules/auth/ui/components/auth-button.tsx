@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { UserCircleIcon } from 'lucide-react';
 
 
-const AuthButton = () => {
+export const AuthButton = () => {
 
   // TODO: add different auth states //
 
@@ -14,5 +14,3 @@ const AuthButton = () => {
     </Button>
   )
 }
-
-export default AuthButton;
