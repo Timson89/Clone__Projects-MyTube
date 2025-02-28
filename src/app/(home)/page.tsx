@@ -5,7 +5,7 @@ export default function Home() {
   return (
     
     <div>
-      I upload videos!!!
+      Hello World!!!
     </div>
-  );
+  )
 }
