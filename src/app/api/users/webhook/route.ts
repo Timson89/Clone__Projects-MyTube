@@ -1,9 +1,14 @@
-import { Webhook } from 'svix'
-import { headers } from 'next/headers'
-import { WebhookEvent } from '@clerk/nextjs/server'
+// webhook
+import { Webhook } from 'svix';
+import { headers } from 'next/headers';
+import { WebhookEvent } from '@clerk/nextjs/server';
+// database
+import { db } from '@/db';
+import { users } from '@/db/schema';
+import { eq } from 'drizzle-orm';
 
 export async function POST(req: Request) {
-  const SIGNING_SECRET = process.env.SIGNING_SECRET
+  const SIGNING_SECRET = process.env.CLERK_SIGNING_SECRET
 
   if (!SIGNING_SECRET) {
     throw new Error('Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env')
@@ -45,12 +50,53 @@ export async function POST(req: Request) {
     })
   }
 
-  // Do something with payload
-  // For this guide, log payload to console
-  const { id } = evt.data
-  const eventType = evt.type
-  console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
-  console.log('Webhook payload:', body)
+  // MyTube Webhook
 
-  return new Response('Webhook received', { status: 200 })
+  const eventType = evt.type
+
+  // create user
+  
+  if (eventType === 'user.created') {
+    
+    const { data } = evt;
+
+    await db.insert(users).values({
+
+       clerkID: data.id,
+          name: `${ data.first_name } ${ data.last_name }`,
+      imageURL: data.image_url,
+    }
+   )
+  }
+
+  // delete user
+
+  if (eventType === 'user.deleted') {
+
+    const { data } = evt;
+
+    if (!data.id) {
+
+      return new Response("Missing user id", { status: 400 });
+    }
+    
+    await db.delete(users).where(eq(users.clerkID, data.id));
+  }
+
+  // update user
+
+  if (eventType === 'user.updated') {
+
+    const { data } = evt;
+
+    await db
+      .update(users)
+      .set({
+        name: `${ data.first_name } ${ data.last_name }`,
+        imageURL: data.image_url,
+      }
+    ).where(eq(users.clerkID, data.id))
+  }
+
+  return new Response('Webhook received', { status: 200 });
 }
