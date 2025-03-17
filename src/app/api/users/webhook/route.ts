@@ -62,7 +62,7 @@ export async function POST(req: Request) {
 
     await db.insert(users).values({
 
-       clerkID: data.id,
+       clerkId: data.id,
           name: `${ data.first_name } ${ data.last_name }`,
       imageURL: data.image_url,
     }
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
       return new Response("Missing user id", { status: 400 });
     }
     
-    await db.delete(users).where(eq(users.clerkID, data.id));
+    await db.delete(users).where(eq(users.clerkId, data.id));
   }
 
   // update user
@@ -95,7 +95,7 @@ export async function POST(req: Request) {
         name: `${ data.first_name } ${ data.last_name }`,
         imageURL: data.image_url,
       }
-    ).where(eq(users.clerkID, data.id))
+    ).where(eq(users.clerkId, data.id))
   }
 
   return new Response('Webhook received', { status: 200 });
