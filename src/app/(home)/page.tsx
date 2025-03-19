@@ -1,7 +1,5 @@
 
-
 // *** Server/Backend ***
-
 
 import { HydrateClient, trpc } from "@/trpc/server";
 import { HomeView } from "@/modules/home/ui/views/home-view";

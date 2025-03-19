@@ -1,4 +1,4 @@
-
+import { CategoriesSection } from "../sections/categories-section";
 
 
 interface HomeViewProps {
@@ -19,6 +19,7 @@ export const HomeView = ({ categoryId }: HomeViewProps) => {
                     flex-col 
                     gap-y-6
                    '>
+      <CategoriesSection categoryId={ categoryId } />  
     </div>
   )
 }
