@@ -10,7 +10,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 export default async function Home() {
 
-  void trpc.hello.prefetch({ text: "World!!!"});
+  void trpc.categories.getMany.prefetch();
 
   return (
     
