@@ -11,7 +11,7 @@ export const studioRouter = createTRPCRouter({
 
   .input(
     z.object({
-      curser: z.object({
+      cursor: z.object({
         id: z.string().uuid(),
         updateAt: z.date(),
       })
@@ -19,7 +19,7 @@ export const studioRouter = createTRPCRouter({
       limit: z.number().min(1).max(100),
     }),
   )
-  
+
   .query(async ({ ctx, input }) => { 
 
     const { cursor, limit } = input;
